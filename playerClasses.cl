@@ -51,8 +51,7 @@
 
 ;; checks for if the player is over twenty
 (defmethod over-twenty((plyr player))
-  (if(< 20 (calculate-score plyr)) 't 'nil
-    ))
+  (< 20 (calculate-score plyr)))
 
 ;; check for if the player's hand is empty
 (defmethod is-hand-empty((plyr player))

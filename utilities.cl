@@ -5,7 +5,8 @@
 (defparameter *modifiers* '(positive negative))
 ;; All values a card can hold
 (defparameter *values* '(10 9 8 7 6 5 4 3 2 1))
-
+(defparameter *player1* nil)
+(defparameter *player2* nil)
 ;;Global variable for the deck
 ;;; A global variable for the deck
 (defvar *deck* nil)
@@ -122,3 +123,12 @@
 ;;Accessor functions for slots: structname-slotname
 ;; structure for all cards
 (defstruct card modifier value)
+
+;; THE FOLLOWING FUNCTIONS ARE FOR TESTING;;;;;;;;;;;;;;;;
+
+
+;; used to create two player classes - sets them to player1 and player2
+(defun create-players ()
+  (setf *player1* (make-instance 'player))
+  (setf *player2* (make-instance 'player))
+  T)
