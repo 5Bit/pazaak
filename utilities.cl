@@ -9,14 +9,9 @@
 ;;Global variable for the deck
 ;;; A global variable for the deck
 (defvar *deck* nil)
-(defvar *player-one-hand* nil)
-(defvar *player-two-hand* nil)
-
 
 ;; End of variables and parameters
 ;; Functions beyond this point
-
-
 
 ;; makes a deck of 1 to 10 with 4 items 
 (defun make-deck ()
@@ -37,8 +32,6 @@
       sum
         (if (equal (card-modifier item) 'positive) (card-value item) (- (card-value item))))
   )
-
-
 
 ;; Get's the top card, and removes it from the deck.
 (defun take-top-card (deck)
@@ -83,27 +76,6 @@
                                        (shuffle player-hand)
                                     player-hand))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;; clean the code in this block! Ugly solution to a problem.
-;; Come up with a more elegant solution!
-;; Uses make-shuffled-hand to assign player-one's hand randomly
-(defun make-shuffled-hand-player-one ()
-    (setf *player-one-hand* (hand-reducer (let ((player-hand (make-hand-deck)))
-                                       (shuffle player-hand)
-                                            player-hand))))
-
-
-;; does the same as above - clean up
-(defun make-shuffled-hand-player-two ()
-    (setf *player-two-hand* (hand-reducer (let ((player-hand (make-hand-deck)))
-                                       (shuffle player-hand)
-                                            player-hand))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 ;; compare cards - returns T if true and same card, NIL if false
 (defun card-compare (card card2)
   (and (equal (card-modifier card) (card-modifier card2))
@@ -118,10 +90,29 @@
       do (if (card-compare target-card card) (return 't))))
 
 
+;; Removes the card from the deck
+;; helper
 (defun remove-card (deck card)
   (cond ((null deck) 'nil)
         ((card-compare card (car deck)) (remove-card (cdr deck) card))
         (t (cons (car deck) (remove-card (cdr deck) card)))))
+
+;; used to make cards easier. Takes in just a value and a modifier.
+;; Modifiers must be either in the format 'positive or 'negative
+;; values must be between 1 and 10
+(defun create-card (val mod)
+  (make-card :value val :modifier mod))
+
+;; Returns the modifier of the supplied card
+(defun get-card-modifier (card)
+  (slot-value card 'modifier))
+
+;; Returns the value of the supplied card
+(defun get-card-value (card)
+  (slot-value card 'value))
+
+(defun get-card-info (card)
+  (list (get-card-value card) (get-card-modifier card)))
 
 
 ;; Set up in the format: (make-card :value 5 :modifier 'Positive)

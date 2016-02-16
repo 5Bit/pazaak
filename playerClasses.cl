@@ -31,11 +31,10 @@
         (t 'nil)))
 
 
-;;TODO - test - should set the name of the player
+;;Set the name of the player
 (defmethod set-name ((plyr player) str)
   (setf (slot-value plyr 'name) str
    ))
-
 
 ;;pushes the card given onto the player's board
 (defmethod place-card-on-board((plyr player) card)
@@ -44,7 +43,6 @@
 ;; Generates a new hand for the player
 (defmethod reset-hand ((plyr player))
   (setf (get-hand plyr) (make-shuffled-hand (get-hand plyr))))
-
 
 ;; Calculates the player's score
 (defmethod calculate-score ((plyr player))
@@ -63,8 +61,6 @@
 (defmethod play-deck-card((plyr player))
   (setf (slot-value plyr 'board) (push (take-top-card *deck*) (get-board plyr))
     ))
-
-
 
 ;;TODO - RUN
 ;; First, draw card from deck to board
