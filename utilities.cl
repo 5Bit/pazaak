@@ -125,7 +125,7 @@
 ;; loops through the hand provided and puts them in a single list
 (defun get-hand-info (hand)
   (loop for item in hand
-        collect (get-card-info item)))
+        collect (get-card-info item))) ;; 
 
 
 ;; THE FOLLOWING FUNCTIONS ARE FOR TESTING;;;;;;;;;;;;;;;;

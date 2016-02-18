@@ -25,7 +25,7 @@
         (t 'nil))
   temp)
 
-;;TODO - TEST
+
 ;; Used to determine the winner of the game
 (defmethod winner? ((gme game))
   (cond ((over-twenty (get-player1 gme)) 'player2)
