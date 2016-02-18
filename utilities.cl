@@ -70,7 +70,6 @@
     (shuffle deck)
     deck)))
 
-
 ;; Used to make a shuffled hand and place it into the player-hand
 (defun make-shuffled-hand (player-hand) ;; bug is in the setf here - it wont allow me to change the variable passed in.
   (setf player-hand (hand-reducer (let ((player-hand (make-hand-deck)))
@@ -89,7 +88,6 @@
 (defun find-card-in-hand (target-card hand)
   (loop for card in hand
       do (if (card-compare target-card card) (return 't))))
-
 
 ;; Removes the card from the deck
 ;; helper
@@ -124,8 +122,13 @@
 ;; structure for all cards
 (defstruct card modifier value)
 
-;; THE FOLLOWING FUNCTIONS ARE FOR TESTING;;;;;;;;;;;;;;;;
+;; loops through the hand provided and puts them in a single list
+(defun get-hand-info (hand)
+  (loop for item in hand
+        collect (get-card-info item)))
 
+
+;; THE FOLLOWING FUNCTIONS ARE FOR TESTING;;;;;;;;;;;;;;;;
 
 ;; used to create two player classes - sets them to player1 and player2
 (defun create-players ()
