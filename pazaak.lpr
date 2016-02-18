@@ -6,7 +6,8 @@
   :modules (list (make-instance 'module :name "utilities")
                  (make-instance 'module :name "playerClasses")
                  (make-instance 'module :name "TextUI")
-                 (make-instance 'module :name "Game"))
+                 (make-instance 'module :name "Game")
+                 (make-instance 'module :name "human"))
   :projects nil
   :libraries nil
   :editable-files nil

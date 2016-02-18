@@ -4,15 +4,16 @@
 ;; two humans and games of two AI
 (defclass game ()
   ((player1 :initarg :player1 
-            :initform  (make-instance 'player)
+            :initform  (make-instance 'human)
             :accessor get-player1)
    (player2 :initarg :player2 
-         :initform (make-instance 'player)
+         :initform (make-instance 'human)
           :accessor get-player2)
    (quit :initarg :quit
           :initform 'nil
           :accessor quit?)
    ))
+  
 
 
 ;;TODO - TEST
@@ -29,6 +30,6 @@
 (defmethod winner? ((gme game))
   (cond ((over-twenty (get-player1 gme)) 'player2)
         ((over-twenty (get-player2 gme)) 'player1)
-        ((> (get-score (get-player1 gme)) (get-score (get-player2 gme))) 'player1)
-        ((< (get-score (get-player1 gme)) (get-score (get-player2 gme))) 'player2)
+        ((> (get-score (get-player1 gme)) (get-score (get-player2 gme))) (get-name (get-player1 gme)))
+        ((< (get-score (get-player1 gme)) (get-score (get-player2 gme))) (get-name (get-player2 gme)))
         (t 'draw)))

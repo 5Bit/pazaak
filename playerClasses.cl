@@ -14,11 +14,14 @@
           :initform 0
           :accessor get-score)
    (name :initarg :name
-         :initform ""
+         :initform "Bob"
          :accessor get-name)
    (status :initarg :status
          :initform ()
-         :accessor get-status)))
+           :accessor get-status)))
+
+
+
 
 
 ;; warning - does not place directly onto the board.
@@ -29,6 +32,7 @@
       (setf (slot-value plyr 'hand) (remove-card (get-hand plyr) card))
         )
         (t 'nil)))
+
 
 
 ;;Set the name of the player
