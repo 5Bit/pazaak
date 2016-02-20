@@ -13,7 +13,7 @@
           :initform 'nil
           :accessor quit?)
    ))
-  
+
 
 
 ;;TODO - TEST
@@ -25,6 +25,14 @@
         (t 'nil))
   temp)
 
+;;TODO
+(defmethod set-player-names ((gme game))
+  (format t "PLAYER 1~%")
+  (set-name (get-player1 gme) (prompt-change-name))
+  (format t "PLAYER 2~%")
+  (set-name (get-player2 gme) (prompt-change-name))
+  )
+
 
 ;; Used to determine the winner of the game
 (defmethod winner? ((gme game))
@@ -33,3 +41,12 @@
         ((> (get-score (get-player1 gme)) (get-score (get-player2 gme))) (get-name (get-player1 gme)))
         ((< (get-score (get-player1 gme)) (get-score (get-player2 gme))) (get-name (get-player2 gme)))
         (t 'draw)))
+
+(defmethod run ((gme game))
+  (run (get-player1 gme))
+  (run (get-player2 gme))
+  )  
+
+
+;; THE FOLLOWING ARE FOR TESTING;;;;;;;;;;;;;;;;
+;;(setf game (make-instance 'game))

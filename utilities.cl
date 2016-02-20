@@ -1,5 +1,4 @@
 ;;THE FOLLOWING ARE UTILITY FUNCTIONS
-
 ;;; The Parameters for the cards.
 ;; modifiers for cards
 (defparameter *modifiers* '(positive negative))
@@ -10,7 +9,6 @@
 ;;Global variable for the deck
 ;;; A global variable for the deck
 (defvar *deck* nil)
-
 ;; End of variables and parameters
 ;; Functions beyond this point
 
@@ -125,8 +123,10 @@
 ;; loops through the hand provided and puts them in a single list
 (defun get-hand-info (hand)
   (loop for item in hand
-        collect (get-card-info item))) ;; 
+      collect (get-card-info item))) ;; 
 
+;; Inserting items that must be done here
+(make-shuffled-deck) ;; always done just to get it over with
 
 ;; THE FOLLOWING FUNCTIONS ARE FOR TESTING;;;;;;;;;;;;;;;;
 

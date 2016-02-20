@@ -17,6 +17,10 @@
   (print-board (get-hand-info (get-board man))) ;; prints the board cards
   (print-player-choices man) ;; prompts the player to choose their actions
   ;; read in the choice
+  (setf choice (read))
+  ;;(loop while (or (< choice 1) (> choice 
+  
+  
   
   (print-score (setf (get-score man) (calculate-score man))) ;; sets the score for the player and prints it
   )

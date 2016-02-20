@@ -46,12 +46,10 @@ the previous rules."))
 ;;TODO
 ;; DEFUN a method to determine if a player is over 20 - if so, they lose!
 
-
-
-;;TODO
-;; Defun a method to print cards currently on the board of the player provided
-
-
+;; Prompt the players to set their names
+;; Returns the name chosen
+(defun prompt-change-name ()
+  (format t "Please provide a name:") (read))
 
 
 ;;TODO - clean up function and remove that ugly NIL at the end of every print print-hand makes!
@@ -63,6 +61,9 @@ the previous rules."))
   (if(>(length hand) 2) (format t "CardThree: ~a, ~a ~%" (second (third hand)) (first (third hand))))
   (if(>(length hand) 3) (format t "CardFour:  ~a, ~a ~%" (second (fourth hand)) (first (fourth hand)))))
 
+;; Method that prints all of the cards currently on the board with the board provided as a list
+;; of the following format:
+;; hand must be provided as a list of (num modifier)
 (defun print-board(hand)
   (loop for item in hand
         do(format t "Deck: ~a ~a ~%" (second item) (first item))))
@@ -71,8 +72,8 @@ the previous rules."))
 ;;TODO
 ;; Defun a method to print the current player's turn choices (place card, pass, stand, forfeit)
 (defmethod print-player-choices((plyr player))
-  (format t "~%Player ~a, the following are your possible actions:" (get-name plyr))
-  (if (equal (is-hand-empty plyr) nil)  (format t "~%1. Play a hand card.~%"))
+  (format t "~%Player ~a, the following are your possible actions:~%" (get-name plyr))
+  (if (equal (is-hand-empty plyr) nil)  (format t "1. Play a hand card.~%"))
   (format t "2. Pass your turn.~%")
   (format t "3. Stand with your current board.~%")
   (format t "4. Forfeit the game.~%")
@@ -87,5 +88,5 @@ the previous rules."))
   (format t "It is now ~a's turn." (get-name plyr)))
 
 (defmethod print-score(num)
-  (format t "Your score is now: ~d" num))
+  (format t "Your score is now: ~d~%" num))
   

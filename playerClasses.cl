@@ -20,10 +20,6 @@
          :initform ()
            :accessor get-status)))
 
-
-
-
-
 ;; warning - does not place directly onto the board.
 ;; uses the card if it has it. returns nil if it doesnt have it
 ;;returns the new hand if the card exists in the list - else, returns nil
