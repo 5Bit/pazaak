@@ -1,6 +1,5 @@
 ;; status details
-;; Standing = (stand) ;;Standing a turn ends this turn and all turns to come
-;; Pass = (pass)      ;;Passing a turn ends their current turn
+;; Standing = 3 ;;Standing a turn ends this turn and all turns to come
 ;; Forfeit = (forfeit);;Forefeits the game - opponent wins
 
 (defclass player ()
@@ -34,7 +33,11 @@
 ;;Set the name of the player
 (defmethod set-name ((plyr player) str)
   (setf (slot-value plyr 'name) str
-   ))
+    ))
+
+;;Set the status of the player
+(defmethod set-status ((plyr player) val)
+  (setf (slot-value plyr 'status) val))
 
 ;;pushes the card given onto the player's board
 (defmethod place-card-on-board((plyr player) card)

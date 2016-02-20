@@ -14,9 +14,6 @@
           :accessor quit?)
    ))
 
-
-
-;;TODO - TEST
 ;; Returns a list of the players who are over twenty.
 (defmethod over-twenty-check ((gme game))
   (setf temp ())
@@ -25,7 +22,8 @@
         (t 'nil))
   temp)
 
-;;TODO
+
+;; Prompts both players to set their names
 (defmethod set-player-names ((gme game))
   (format t "PLAYER 1~%")
   (set-name (get-player1 gme) (prompt-change-name))
@@ -43,8 +41,8 @@
         (t 'draw)))
 
 (defmethod run ((gme game))
-  (run (get-player1 gme))
-  (run (get-player2 gme))
+  ( if(not (eql (get-status (get-player1 gme))3)) (run (get-player1 gme)))
+  ( if(not (eql (get-status (get-player2 gme))3)) (run (get-player2 gme)))
   )  
 
 

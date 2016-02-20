@@ -56,17 +56,17 @@ the previous rules."))
 ;; defun a method to print cards currently in the hand of the player provided
 ;; hand must be provided as a list of (num modifier)
 (defun print-hand(hand)
-  (if(>(length hand) 0) (format t "CardOne:   ~a, ~a ~%" (second (first hand)) (first (first hand))))
-  (if(>(length hand) 1) (format t "CardTwo:   ~a, ~a ~%" (second (second hand)) (first (second hand))))
-  (if(>(length hand) 2) (format t "CardThree: ~a, ~a ~%" (second (third hand)) (first (third hand))))
-  (if(>(length hand) 3) (format t "CardFour:  ~a, ~a ~%" (second (fourth hand)) (first (fourth hand)))))
+  (if(>(length hand) 0) (format t "1:   ~a, ~a ~%" (second (first hand)) (first (first hand))))
+  (if(>(length hand) 1) (format t "2:   ~a, ~a ~%" (second (second hand)) (first (second hand))))
+  (if(>(length hand) 2) (format t "3: ~a, ~a ~%" (second (third hand)) (first (third hand))))
+  (if(>(length hand) 3) (format t "4:  ~a, ~a ~%" (second (fourth hand)) (first (fourth hand)))))
 
 ;; Method that prints all of the cards currently on the board with the board provided as a list
 ;; of the following format:
 ;; hand must be provided as a list of (num modifier)
 (defun print-board(hand)
   (loop for item in hand
-        do(format t "Deck: ~a ~a ~%" (second item) (first item))))
+        do(format t "on Board: ~a ~a ~%" (second item) (first item))))
 
 
 ;;TODO
@@ -77,6 +77,10 @@ the previous rules."))
   (format t "2. Pass your turn.~%")
   (format t "3. Stand with your current board.~%")
   (format t "4. Forfeit the game.~%")
+  )
+
+(defun prompt-to-choose-hand-card ()
+  (format t "~%Please choose the number of a card in your hand.~%")
   )
 
 ;; Printout prompt written before the current hand
