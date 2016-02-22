@@ -22,6 +22,10 @@
         (t 'nil))
   temp)
 
+;; a method to setup the game!
+(defmethod setup-game ((gme game))
+  (set-player-names gme)
+  )
 
 ;; Prompts both players to set their names
 (defmethod set-player-names ((gme game))
@@ -31,16 +35,51 @@
   (set-name (get-player2 gme) (prompt-change-name))
   )
 
+;; used to run the game.
+(defmethod run ((gme game))
+   (setup-game gme) ;; setup the game first
+  
+  ;; TODO - update this while loop so it properly checks if both
+  ;; players aren't standing
+  ;; and if either player isn't quitting. Might need nested loop
+  ;; inside it.
+   ;; loop while each player is not forefieting or over their score...
+  (loop while 
+        (quitting? gme)
+        do
+        (game-round gme)
+        )
+  
+  
+  (if(eql (winner? gme) 'draw) (format t "The game is a draw!") 
+    (format t "The winner is ~a" (winner? gme)))
+  
+  
+   
+  )
+
+;; TODO - test
+;; Tests if either player is quitting
+(defmethod quitting? ((gme game))
+        (and (not (equal 4 (get-status (get-player1 gme)))) (not (equal 4 (get-status (get-player2 gme)))))
+  )
+
+;; TODO - test
+;; Tests if both players are standing
+(defmethod both-standing?((gme game))
+  (and (not (equal 3 (get-status (get-player1 gme)))) (not (equal 3 (get-status (get-player2 gme)))))
+  )
+
 
 ;; Used to determine the winner of the game
 (defmethod winner? ((gme game))
-  (cond ((over-twenty (get-player1 gme)) 'player2)
-        ((over-twenty (get-player2 gme)) 'player1)
+  (cond ((over-twenty (get-player1 gme)) (get-name (get-player2 gme)))
+        ((over-twenty (get-player2 gme)) (get-name (get-player1 gme)))
         ((> (get-score (get-player1 gme)) (get-score (get-player2 gme))) (get-name (get-player1 gme)))
         ((< (get-score (get-player1 gme)) (get-score (get-player2 gme))) (get-name (get-player2 gme)))
         (t 'draw)))
 
-(defmethod run ((gme game))
+(defmethod game-round ((gme game))
   ( if(not (eql (get-status (get-player1 gme))3)) (run (get-player1 gme)))
   ( if(not (eql (get-status (get-player2 gme))3)) (run (get-player2 gme)))
   )  

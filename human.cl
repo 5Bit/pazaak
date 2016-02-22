@@ -25,6 +25,7 @@
       (loop while (or (< choice 1) (> choice 4)) do(setf choice (read))) )
   ;; Call according action
   ;; 1 - play hand card - prompt player to choose a card, and then play it.
+  (if (equal choice 1) (prompt-to-choose-hand-card))
   (if (equal choice 1) 
       (place-card-on-board man (setf temp (nth (-  (human-use-card man) 1) (get-hand man)))))
   (if (equal choice 1) (use-card man temp)) ;; removes the card just used!

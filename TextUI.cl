@@ -92,5 +92,5 @@ the previous rules."))
   (format t "It is now ~a's turn." (get-name plyr)))
 
 (defmethod print-score(num)
-  (format t "Your score is now: ~d~%" num))
+  (format t "Your score is now: ~d~%~%" num))
   
