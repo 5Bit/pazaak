@@ -8,7 +8,7 @@
   ())
 
 
-
+;; Used to run the player's turn
 (defmethod run ((man human))
   (if (equal (get-status man) 3) return nil)
   (prompt-player man);; prompts the player it is their turn
