@@ -43,31 +43,29 @@
   ;; players aren't standing
   ;; and if either player isn't quitting. Might need nested loop
   ;; inside it.
-   ;; loop while each player is not forefieting or over their score...
+  ;; loop while each player is not forefieting or over or they stand  their score...
   (loop while 
-        (quitting? gme)
+        (and (and (quitting? gme) (both-standing? gme)) (and (null (over-twenty (get-player1 gme))) (null (over-twenty (get-player2 gme)))))
         do
         (game-round gme)
         )
-  
-  
+  ;; Determine winner, and print that stuffola!
   (if(eql (winner? gme) 'draw) (format t "The game is a draw!") 
     (format t "The winner is ~a" (winner? gme)))
-  
-  
-   
   )
 
-;; TODO - test
+
+
+
 ;; Tests if either player is quitting
 (defmethod quitting? ((gme game))
         (and (not (equal 4 (get-status (get-player1 gme)))) (not (equal 4 (get-status (get-player2 gme)))))
   )
 
-;; TODO - test
+
 ;; Tests if both players are standing
 (defmethod both-standing?((gme game))
-  (and (not (equal 3 (get-status (get-player1 gme)))) (not (equal 3 (get-status (get-player2 gme)))))
+  (or (not (equal 3 (get-status (get-player1 gme)))) (not (equal 3 (get-status (get-player2 gme)))))
   )
 
 

@@ -53,6 +53,7 @@
                           ))
 
 ;; checks for if the player is over twenty
+;; returns T if under 20
 (defmethod over-twenty((plyr player))
   (< 20 (calculate-score plyr)))
 
