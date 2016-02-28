@@ -9,7 +9,7 @@
                  (make-instance 'module :name "Game")
                  (make-instance 'module :name "human")
                  (make-instance 'module :name "AiPlayerClass")
-                 (make-instance 'module :name "note"))
+                 (make-instance 'module :name "node"))
   :projects nil
   :libraries nil
   :editable-files nil
