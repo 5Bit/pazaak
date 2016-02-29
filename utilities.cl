@@ -111,6 +111,9 @@
 (defun get-card-info (card)
   (list (get-card-value card) (get-card-modifier card)))
 
+;; Creates a copy of the card given
+(defun copy-card (card)
+  (make-card :value (get-card-value card) :modifier (get-card-modifier card)))
 
 ;; Set up in the format: (make-card :value 5 :modifier 'Positive)
 ;;constructor function: make-structname                  

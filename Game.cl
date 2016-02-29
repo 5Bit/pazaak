@@ -39,7 +39,6 @@
 (defmethod run ((gme game))
    (setup-game gme) ;; setup the game first
   
-  ;; TODO - update this while loop so it properly checks if both
   ;; players aren't standing
   ;; and if either player isn't quitting. Might need nested loop
   ;; inside it.

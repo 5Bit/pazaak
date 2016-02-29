@@ -5,11 +5,29 @@
 ;; Easy - 1 ply
 ;; Medium - 2 ply
 ;; Hard - 3 ply
+;; utilize the status system for automating if they continue to play and stuff
 
-;; TODO - Fill accordingly
+
 (defclass AIPlayer(player)
   ())
 
+;; Makes a deep copy of the AI
+;;TODO - TEST
+(defmethod AI-Deep-copy ((aip AIPlayer))
+  ;; create instance of AIPlayer
+  ;; fill said AI Player with deep copies of all the stuff within AIP.
+  ;; should copy hand
+  (setf temphand ());; make an empty temphand
+  (loop for item in (get-hand aip)
+        collect(copy-card item)
+        )
+  ;; should copy board
+  (setf tempboard ())
+  (loop for item in (get-board aip)
+        collect(copy-card item ))
+  ;; should create a new instance with copies of all of the items given.
+  (make-instance 'AIPlayer :board tempboard :hand temphand :score (get-score aip) :name (get-name aip) :status (get-status aip))
+  )
 
 ;;TODO
 ;; Used to run the Ai's turn
@@ -38,16 +56,12 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   )
 
-;;TODO - make initalization method and put it at start of run
-
-;; TODO - make togglePrints to toggle AIP printouts for debugging
 
 ;; TODO - calculate-OpponentScore - used to get the opponents score.
 ;; May need to have AI use bland names - will make easier to automate
 ;; this - either that, or have reference to game. Will need to test
 ;; if it gets a reference or a copy.
 
-;; TODO - calculate-Score - Calculate own score
 
 ;; TODO - make-Move - will return the next move. Calculate using a tree
 ;; and nodes. 
@@ -56,4 +70,19 @@
 ;; the public setup method
 
 ;; TODO - calculate-successors Calculate Successors
+(defmethod calculate-successors ((aip AIPlayer))
+  (setf successors ())
+  ;; if hand isn't empty, make successors for playing each card
+  (if (not (is-hand-empty aip)) 
+      (loop for crd in (get-hand aip)
+            do(setf tempstate (AI-Deep-Copy aip))
+            do(place-card-on-board tempstate crd)
+            do(use-card tempstate crd)
+            do(push tempstate successors)
+            ))
+  ;; the one that could just pass...
+  (push (AI-Deep-Copy aip) successors) 
+  ;; TODO - make the one that can just stand!
+  
+  successors)
 
