@@ -7,9 +7,12 @@
 ;; Hard - 3 ply
 ;; utilize the status system for automating if they continue to play and stuff
 
-
+;; TODO - initalize opponent at start of Player versus AI game
 (defclass AIPlayer(player)
-  ())
+  ((opponent :initarg :opponent 
+            :initform () 
+            :accessor get-opponent))
+)
 
 ;; Makes a deep copy of the AI
 ;;TODO - TEST
@@ -19,12 +22,13 @@
   ;; should copy hand
   (setf temphand ());; make an empty temphand
   (loop for item in (get-hand aip)
-        collect(copy-card item)
+        do(push (copy-card item) temphand )
         )
   ;; should copy board
   (setf tempboard ())
   (loop for item in (get-board aip)
-        collect(copy-card item ))
+        do(push (copy-card item) tempboard )
+        )
   ;; should create a new instance with copies of all of the items given.
   (make-instance 'AIPlayer :board tempboard :hand temphand :score (get-score aip) :name (get-name aip) :status (get-status aip))
   )
@@ -40,7 +44,12 @@
   (print-hand (get-hand-info (get-hand aip))) ;; prints the hand cards
   (print-board (get-hand-info (get-board aip))) ;; prints the board cards
   
-
+  
+  ;; for basic testing purposes - this AI has no intelligence and just keeps
+  ;; accumulating cards
+  (simpleAI aip)
+  
+  
   ;; PUT AI CHOICES IN HERE! Call it's minimax, have it run the search for
   ;; the correct path, and implement it's choice
   
@@ -69,7 +78,7 @@
 ;; TODO - move-helper for make-move. Make this recursive, and makemove
 ;; the public setup method
 
-;; TODO - calculate-successors Calculate Successors
+;; Creates a list of all successors for this state
 (defmethod calculate-successors ((aip AIPlayer))
   (setf successors ())
   ;; if hand isn't empty, make successors for playing each card
@@ -82,7 +91,19 @@
             ))
   ;; the one that could just pass...
   (push (AI-Deep-Copy aip) successors) 
-  ;; TODO - make the one that can just stand!
+  
+  ;; Create standing successor
+  (setf tempsucc (AI-Deep-Copy aip))
+  (setf (get-status tempsucc) 3)
+  (push tempsucc successors)
   
   successors)
 
+
+;;SIMPLE AI
+;; just checks if the score is above 15. If it is, it stands. Else, it passes.
+(defmethod simpleAI((aip aiplayer))
+  (if (> (calculate-score aip) 15) (format t "~%~a is standing." (get-name aip)))
+  (if (> (calculate-score aip) 15) (setf (get-status aip) 3))
+  
+  )

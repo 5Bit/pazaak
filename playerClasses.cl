@@ -13,7 +13,7 @@
           :initform 0
           :accessor get-score)
    (name :initarg :name
-         :initform "Bob"
+         :initform "TANTARUS"
          :accessor get-name)
    (status :initarg :status
          :initform ()

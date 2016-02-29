@@ -14,6 +14,8 @@
   (prompt-player man);; prompts the player it is their turn
   ;; play deck card onto board
   (push (take-top-card *deck*) (get-board man))
+  
+  (print-score (setf (get-score man) (calculate-score man))) ;; sets the score for the player and prints it
   (prompt-current-hand) ;;prompts the player the following is their hand
   (print-hand (get-hand-info (get-hand man))) ;; prints the hand cards
   (print-board (get-hand-info (get-board man))) ;; prints the board cards
