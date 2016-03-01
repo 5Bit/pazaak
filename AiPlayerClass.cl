@@ -36,6 +36,8 @@
 ;;TODO
 ;; Used to run the Ai's turn
 (defmethod run ((aip AIPlayer))
+  (format t "--------------------------------------------------------------~%")
+  
   (if (equal (get-status aip) 3) return nil) ;; if passing, pass
   (prompt-player aip);; prompts the player it is the Ai's turn
   ;; play deck card onto board

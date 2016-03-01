@@ -41,15 +41,14 @@ the previous rules."))
 ;; DEFUN A CHOOSE YOUR PLAYTYPE HERE ( For starters only make it able
 ;; to play against another player)
 (defun print-play-types()
-  (format t "1: Player versus Player ~%" ))
-
-;;TODO
-;; DEFUN a method to determine if a player is over 20 - if so, they lose!
+  (format t "1: Player versus Player ~%" )
+  (format t "2: Player versus AI (Easy)~%")
+  (format t "3: Player versus AI (Medium)~%"))
 
 ;; Prompt the players to set their names
 ;; Returns the name chosen
 (defun prompt-change-name ()
-  (format t "Please provide a name:") (read))
+  (format t "Please provide a 1-word name:") (read))
 
 
 ;;TODO - clean up function and remove that ugly NIL at the end of every print print-hand makes!
@@ -68,17 +67,16 @@ the previous rules."))
   (loop for item in hand
         do(format t "on Board: ~a ~a ~%" (second item) (first item))))
 
-
-;;TODO
 ;; Defun a method to print the current player's turn choices (place card, pass, stand, forfeit)
 (defmethod print-player-choices((plyr player))
   (format t "~%Player ~a, the following are your possible actions:~%" (get-name plyr))
   (if (equal (is-hand-empty plyr) nil)  (format t "1. Play a hand card.~%"))
   (format t "2. Pass your turn.~%")
   (format t "3. Stand with your current board.~%")
-  (format t "4. Forfeit the game.~%")
+  (format t "4. Quit the game.~%")
   )
 
+;; Prompts the player to choose their hand card
 (defun prompt-to-choose-hand-card ()
   (format t "~%Please choose the number of a card in your hand.~%")
   )
@@ -91,6 +89,7 @@ the previous rules."))
 (defmethod prompt-player ((plyr player))
   (format t "It is now ~a's turn." (get-name plyr)))
 
+;; Display's the score given
 (defmethod print-score(num)
-  (format t "Your score is now: ~d~%~%" num))
+  (format t "~%Your score is now: ~d~%~%" num))
   

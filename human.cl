@@ -11,6 +11,7 @@
 ;; Used to run the player's turn
 (defmethod run ((man human))
   (if (equal (get-status man) 3) return nil)
+    (format t "--------------------------------------------------------------~%")
   (prompt-player man);; prompts the player it is their turn
   ;; play deck card onto board
   (push (take-top-card *deck*) (get-board man))

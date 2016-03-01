@@ -1,4 +1,3 @@
-
 ;; standard game - can have two players. 
 ;; Inherit from this to make games of
 ;; two humans and games of two AI
