@@ -16,11 +16,11 @@
 
 ;; Returns a list of the players who are over twenty.
 (defmethod over-twenty-check ((gme game))
-  (setf temp ())
+  (let ((temp ()))
   (cond ((over-twenty (get-player1 gme)) (push temp (get-player1 gme)))
         ((over-twenty (get-player2 gme)) (push temp (get-player2 gme)))
         (t 'nil))
-  temp)
+  temp))
 
 ;; a method to setup the game!
 (defmethod setup-game ((gme game))

@@ -24,7 +24,6 @@
   (mapcan #'(lambda (modifier)
               (mapcar #'(lambda (value) (make-card :value value :modifier modifier)) *values*)) *modifiers*))
 
-
 ;; Give the player's board, and calculate's that player's score
 (defun calculate-score-helper(player-board)
   (loop for item in player-board
@@ -32,11 +31,12 @@
         (if (equal (card-modifier item) 'positive) (card-value item) (- (card-value item))))
   )
 
+
 ;; Get's the top card, and removes it from the deck.
 (defun take-top-card (deck)
   (if (null deck) 'nil)
-  (setf returnVal (car deck))
-  (setf *deck* (cdr deck)) returnVal)
+  (let (( returnVal (car deck)))
+  (setf *deck* (cdr deck)) returnVal))
 
 
 ;; Reduces the *random-hand* to a size of 4
@@ -69,7 +69,7 @@
     deck)))
 
 ;; Used to make a shuffled hand and place it into the player-hand
-(defun make-shuffled-hand (player-hand) ;; bug is in the setf here - it wont allow me to change the variable passed in.
+(defun make-shuffled-hand (player-hand) 
   (setf player-hand (hand-reducer (let ((player-hand (make-hand-deck)))
                                        (shuffle player-hand)
                                     player-hand))))
@@ -130,6 +130,14 @@
 
 ;; Inserting items that must be done here
 (make-shuffled-deck) ;; always done just to get it over with
+
+;; Used to sort given cards in ascending order
+;; Smallest value cards are at the front of the list
+;; Thus, negative cards tend to bunch up at the front
+;; TODO - implement with insertion sort - small list's will use this only
+;;(defun sort-hand(hand)
+;;  ())
+
 
 ;; THE FOLLOWING FUNCTIONS ARE FOR TESTING;;;;;;;;;;;;;;;;
 

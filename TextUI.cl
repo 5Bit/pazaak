@@ -3,7 +3,8 @@
 
 ;; Prints the start game text
 (defun print-startup()
-  (format t "Starting up Pazaak...~%" )(format t "Welcome to Pazaak!~%" ))
+  (format t "Starting up Pazaak...~%" )
+  (format t "Welcome to Pazaak!~%" ))
 
 
 ;; Prints the game rules to the user
@@ -42,7 +43,7 @@ the previous rules."))
 ;; to play against another player)
 (defun print-play-types()
   (format t "1: Player versus Player ~%" )
-  (format t "2: Player versus AI (Easy)~%")
+  (format t "2: Player versus AI (Easy)~%") ;; have easy use the simple AI
   (format t "3: Player versus AI (Medium)~%"))
 
 ;; Prompt the players to set their names
