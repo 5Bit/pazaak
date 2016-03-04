@@ -44,12 +44,24 @@ the previous rules."))
 (defun print-play-types()
   (format t "1: Player versus Player ~%" )
   (format t "2: Player versus AI (Easy)~%") ;; have easy use the simple AI
-  (format t "3: Player versus AI (Medium)~%"))
+  ;;(format t "3: Player versus AI (Medium)~%")
+  )
 
 ;; Prompt the players to set their names
 ;; Returns the name chosen
 (defun prompt-change-name ()
   (format t "Please provide a 1-word name:") (read))
+
+(defun main-menu()
+  (format t "Choose one of the following by typing in its number.~%")
+  (format t "1: Get Rules~%")
+  (format t "2: Play~%")
+  (format t "3: Quit~%")
+  )
+
+(defun quit-menu()
+  (format t "Are you sure you want to quit Pazaak?")
+  )
 
 
 ;;TODO - clean up function and remove that ugly NIL at the end of every print print-hand makes!
