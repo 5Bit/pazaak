@@ -94,7 +94,7 @@
 ;;SIMPLE AI
 ;; just checks if the score is above 15. If it is, it stands. Else, it passes.
 (defmethod simpleAI((aip aiplayer))
-  (if (> (calculate-score aip) 15) (format t "~%~a is standing." (get-name aip)))
+  (if (> (calculate-score aip) 15) (format t "~%~a is standing.~%" (get-name aip)))
   (if (> (calculate-score aip) 15) (setf (get-status aip) 3))
   
   )
