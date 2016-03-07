@@ -20,7 +20,7 @@ stand with your board until the end of the game, or forfiet the game.~%
 their board) is above 20, they automatically lose.~%
 5. Cards have two modifiers - positive and negative. All cards from the deck are positive.~%
 6. A player may instantly win if they have 9 cards out on the table, while still maintaining
-the previous rules."))
+the previous rules.~%"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;Pazaak rules
