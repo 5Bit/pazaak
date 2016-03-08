@@ -7,7 +7,6 @@
 ;; Hard - 3 ply
 ;; utilize the status system for automating if they continue to play and stuff
 
-
 (defclass AIPlayer(player)
   ((opponent :initarg :opponent 
             :initform () 
@@ -32,7 +31,6 @@
   (make-instance 'AIPlayer :board tempboard :hand temphand :score (get-score aip) :name (get-name aip) :status (get-status aip))
   )))
 
-
 ;; Used to run the Ai's turn
 (defmethod run ((aip AIPlayer))
   (format t "--------------------------------------------------------------~%")
@@ -49,24 +47,9 @@
   ;; for basic testing purposes - this AI has no intelligence and just keeps
   ;; accumulating cards
   (simpleAI aip)
-  
-  
   ;; PUT AI CHOICES IN HERE! Call it's minimax, have it run the search for
   ;; the correct path, and implement it's choice
-  
-  
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CODE FROM HUMAN CLASS ;;;;;;;;;;;;;;;;;;;;
-  ;; Might need;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; 2 - pass turn
-  ;;(if (equal choice 2) return nil)
-  ;; 3 - stand
-  ;;(if (equal choice 3) (set-status man 3))
-  ;; 4 - forfeit game
-  ;;(if (equal choice 4) (set-status man 4))
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   )
-
-
 
 ;; Creates a list of all successors for this state
 (defmethod calculate-successors ((aip AIPlayer))
@@ -87,7 +70,6 @@
   (let ((tempsucc (AI-Deep-Copy aip)))
   (setf (get-status tempsucc) 3)
   (push tempsucc successors))
-  
   successors))
 
 
@@ -96,5 +78,4 @@
 (defmethod simpleAI((aip aiplayer))
   (if (> (calculate-score aip) 15) (format t "~%~a is standing.~%" (get-name aip)))
   (if (> (calculate-score aip) 15) (setf (get-status aip) 3))
-  
   )

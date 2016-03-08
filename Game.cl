@@ -1,4 +1,3 @@
-
 ;; standard game - can have two players. 
 ;; Inherit from this to make games of
 ;; two humans and games of two AI
@@ -53,14 +52,10 @@
     (format t "The winner is ~a" (winner? gme)))
   )
 
-
-
-
 ;; Tests if either player is quitting
 (defmethod quitting? ((gme game))
         (and (not (equal 4 (get-status (get-player1 gme)))) (not (equal 4 (get-status (get-player2 gme)))))
   )
-
 
 ;; Tests if both players are standing
 (defmethod both-standing?((gme game))

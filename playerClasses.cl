@@ -64,9 +64,3 @@
 (defmethod play-deck-card((plyr player))
   (setf (slot-value plyr 'board) (push (take-top-card *deck*) (get-board plyr))
     ))
-
-;;TODO - RUN
-;; First, draw card from deck to board
-;; then, tell player they can place a card if they have one - IF ELSEIF ELSE situation for these
-;; then prompt user that they can either pass
-;; or they can hold for the rest of the game

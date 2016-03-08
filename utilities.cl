@@ -1,4 +1,5 @@
-;;THE FOLLOWING ARE UTILITY FUNCTIONS
+;;THE FOLLOWING ARE UTILITY FUNCTIONS/ITEMS
+
 ;;; The Parameters for the cards.
 ;; modifiers for cards
 (defparameter *modifiers* '(positive negative))
@@ -116,11 +117,7 @@
   (make-card :value (get-card-value card) :modifier (get-card-modifier card)))
 
 ;; Set up in the format: (make-card :value 5 :modifier 'Positive)
-;;constructor function: make-structname                  
-;;Predicate: structname-p
-;;Copier: copy-structname
-;;Accessor functions for slots: structname-slotname
-;; structure for all cards
+
 (defstruct card modifier value)
 
 ;; loops through the hand provided and puts them in a single list
@@ -130,13 +127,6 @@
 
 ;; Inserting items that must be done here
 (make-shuffled-deck) ;; always done just to get it over with
-
-;; Used to sort given cards in ascending order
-;; Smallest value cards are at the front of the list
-;; Thus, negative cards tend to bunch up at the front
-;; TODO - implement with insertion sort - small list's will use this only
-;;(defun sort-hand(hand)
-;;  ())
 
 
 ;; THE FOLLOWING FUNCTIONS ARE FOR TESTING;;;;;;;;;;;;;;;;

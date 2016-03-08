@@ -13,15 +13,10 @@
 ;;TODO - make this fully complete, with submenus and a quit choice
 ;; the run method for the main game
 (defmethod run((game mainGame))
-  
-  
   (print-startup)
-  
-  ;; encase in a while loop that checks if the player has chosen to exit the game and confirmed
-  ;; they want to exit
-  
   ;; if the player chooses to get the rules, do the following:
   (let ((choice -1))
+    ;;while loop that checks if the player has chosen to exit the game and confirmed
     (loop while (null (equal choice 0))
           do(main-menu)
           do(setf choice (get-user-input game 3))
