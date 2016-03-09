@@ -14,6 +14,9 @@
    ))
 
 ;; Returns a list of the players who are over twenty.
+;; Uses conditionals to check each player and check if they are over twenty.
+;; if they aren't, return nil
+;; if they are, returns them
 (defmethod over-twenty-check ((gme pvaigame))
   (let ((temp ()))
   (cond ((over-twenty (get-player1 gme)) (push temp (get-player1 gme)))
@@ -66,6 +69,7 @@
 
 
 ;; Used to determine the winner of the game
+;; determines by comparing scores to other player and if they are over-twenty.
 (defmethod winner? ((gme pvaigame))
   (cond ((over-twenty (get-player1 gme)) (get-name (get-player2 gme)))
         ((over-twenty (get-player2 gme)) (get-name (get-player1 gme)))
@@ -73,6 +77,7 @@
         ((< (get-score (get-player1 gme)) (get-score (get-player2 gme))) (get-name (get-player2 gme)))
         (t 'draw)))
 
+;; Helper for running the pvaigame rounds!
 (defmethod game-round ((gme pvaigame))
   ( if(not (eql (get-status (get-player1 gme))3)) (run (get-player1 gme)))
   ( if(not (eql (get-status (get-player2 gme))3)) (run (get-player2 gme)))

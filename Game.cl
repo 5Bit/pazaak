@@ -64,6 +64,7 @@
 
 
 ;; Used to determine the winner of the game
+;; determines by comparing scores to other player and if they are over-twenty.
 (defmethod winner? ((gme game))
   (cond ((over-twenty (get-player1 gme)) (get-name (get-player2 gme)))
         ((over-twenty (get-player2 gme)) (get-name (get-player1 gme)))

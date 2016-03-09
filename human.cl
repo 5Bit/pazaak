@@ -22,6 +22,7 @@
   (print-board (get-hand-info (get-board man))) ;; prints the board cards
   (print-player-choices man) ;; prompts the player to choose their actions
   ;; read in the choice
+  ;; loops until a proper number is chosen depending on if the player hand is empty
   (let ((choice -1))
   (if (is-hand-empty man) 
       (loop while (or (< choice 2) (> choice 4)) do(setf choice (read))) 
@@ -44,6 +45,7 @@
     )
   )
 
+;;Helper for a sub-menu for choosing what card to use - loops until given an appropriate number
 (defmethod human-use-card ((man human))
   (let ((temp -1))
   (loop while (or (< temp 1) (> temp (length (get-hand man))))

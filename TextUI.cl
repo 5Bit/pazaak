@@ -67,6 +67,7 @@ the previous rules.~%"))
 ;;TODO - clean up function and remove that ugly NIL at the end of every print print-hand makes!
 ;; defun a method to print cards currently in the hand of the player provided
 ;; hand must be provided as a list of (num modifier)
+;; reduces the number of prompts for the cards with the if statements
 (defun print-hand(hand)
   (if(>(length hand) 0) (format t "1:   ~a, ~a ~%" (second (first hand)) (first (first hand))))
   (if(>(length hand) 1) (format t "2:   ~a, ~a ~%" (second (second hand)) (first (second hand))))

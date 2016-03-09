@@ -15,6 +15,8 @@
 
 ;; makes a deck of 1 to 10 with 4 items 
 (defun make-deck ()
+  ;; mapcan loops for all the different modifiers, loops through the values, and assigns of one each to the deck cards
+  ;; Makes 40 cards total
   (mapcan #'(lambda (modifier)
               (mapcar #'(lambda (value) (make-card :value value :modifier modifier)) *values*)) 
     '(positive positive positive positive)))
@@ -22,10 +24,13 @@
 
 ;; Used to make a deck of hand cards - positive and negative
 (defun make-hand-Deck()
+  ;; Similar to make-deck, except uses both positive and negative cards, and only makes 20
   (mapcan #'(lambda (modifier)
               (mapcar #'(lambda (value) (make-card :value value :modifier modifier)) *values*)) *modifiers*))
 
 ;; Give the player's board, and calculate's that player's score
+;; by looping through the board and summing up card values.
+;; checks if cards are positive or negative and adds accordingly
 (defun calculate-score-helper(player-board)
   (loop for item in player-board
       sum
@@ -34,13 +39,14 @@
 
 
 ;; Get's the top card, and removes it from the deck.
+;; Modifies the *deck* variable directly
 (defun take-top-card (deck)
   (if (null deck) 'nil)
   (let (( returnVal (car deck)))
   (setf *deck* (cdr deck)) returnVal))
 
 
-;; Reduces the *random-hand* to a size of 4
+;; Reduces the *random-hand* to a size of 4 by setting the hand to just the 4 cards on the top
 (defun hand-reducer (hand)
   (setf hand (list (car hand) (car (cdr hand)) (car (cdr (cdr hand))) (car (cdr (cdr (cdr hand)))))))
 
@@ -51,6 +57,7 @@
 
 
 ;; Shuffles the deck destructively
+;;From the professor's original card system - saw no need to modify
 (defun shuffle (deck)
   (if (null (cdr deck))
       nil
@@ -64,12 +71,13 @@
 
 
 ;; used to make a shuffled deck of all positive numbers, and puts the deck in *deck*
+;; also from the professor's original card system - saw no need to modify
 (defun make-shuffled-deck ()
   (setf *deck* (let ((deck (make-deck)))
     (shuffle deck)
     deck)))
 
-;; Used to make a shuffled hand and place it into the player-hand
+;; Used to make a shuffled hand and set it into the player-hand
 (defun make-shuffled-hand (player-hand) 
   (setf player-hand (hand-reducer (let ((player-hand (make-hand-deck)))
                                        (shuffle player-hand)
@@ -89,7 +97,9 @@
       do (if (card-compare target-card card) (return 't))))
 
 ;; Removes the card from the deck
-;; helper
+;; helper - recursive
+;; compares the card with the card it is looking for. if found, removes it,
+;;if not, no card removed
 (defun remove-card (deck card)
   (cond ((null deck) 'nil)
         ((card-compare card (car deck)) (remove-card (cdr deck) card))
@@ -109,6 +119,7 @@
 (defun get-card-value (card)
   (slot-value card 'value))
 
+;;Helper to get card information easier
 (defun get-card-info (card)
   (list (get-card-value card) (get-card-modifier card)))
 

@@ -1,6 +1,6 @@
 ;; This is the main class, used to decide between what version of the game a user will play.
 
-
+;; Main game class - used to start/manage the game!
 (defclass mainGame ()
   ((game :initarg :game 
             :initform  ()
@@ -10,7 +10,6 @@
           :accessor get-round-number)
    ))
 
-;;TODO - make this fully complete, with submenus and a quit choice
 ;; the run method for the main game
 (defmethod run((game mainGame))
   (print-startup)
@@ -22,11 +21,9 @@
           do(setf choice (get-user-input game 3))
           do(cond ((equal choice 1) (print-rules))
                  ((equal choice 3) (setf choice 0)))
-    ;;(if (equals choice 3) (setf quitGame 1))
-  ;; go to sub-menus
+          ;; go to sub-menus
           do(if (equal choice 1) (main-menu))
           do(if (equal choice 2) (choose-game game))
-          ;;do(if (equal choice 2) (setf choice 0))
           )))
 
 ;; used to decide the game the player would like to play
